@@ -1,0 +1,73 @@
+﻿@page
+@model SASS.Pages.Reminders.IndexModel
+@{
+    ViewData["Title"] = "Reminders";
+}
+
+<h2 class="mb-4">
+    <i class="fas fa-bell me-2"></i>Reminders
+</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th><i class="fas fa-calendar-alt me-1"></i>Appointment Title</th>
+                <th><i class="fas fa-user me-1"></i>Client Name</th>
+                <th class="text-center"><i class="fas fa-tags me-1"></i>Type</th>
+                <th><i class="fas fa-clock me-1"></i>Date</th>
+                <th class="text-center"><i class="fas fa-info-circle me-1"></i>Status</th>
+                <th class="text-center"><i class="fas fa-tools me-1"></i>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reminder in Model.RemindersList)
+            {
+                <tr>
+                    <td>@reminder.Appointment.Title</td>
+                    <td>@reminder.Appointment.Name</td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-center gap-2">
+                        @if (reminder.Type.ToLower() == "email")
+                        {
+                            <span class="badge bg-primary"><i class="fas fa-envelope me-1"></i>Email</span>
+                        }
+                        else if (reminder.Type.ToLower() == "sms")
+                        {
+                            <span class="badge bg-info text-dark"><i class="fas fa-sms me-1"></i>SMS</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">@reminder.Type</span>
+                        }
+                        </div>
+                    </td>
+                    <td>@reminder.Date.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-center gap-2">
+                        @if (reminder.Status.ToLower() == "sent")
+                        {
+                            <span class="badge bg-success"><i class="fas fa-check me-1"></i>Sent</span>
+                        }
+                        else if (reminder.Status.ToLower() == "pending")
+                        {
+                            <span class="badge bg-warning text-dark"><i class="fas fa-hourglass-half me-1"></i>Pending</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">@reminder.Status</span>
+                        }
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-center gap-2">
+                        <a class="btn btn-sm btn-info" asp-page="/Reminders/Edit" asp-route-id="@reminder.Id">
+                            <i class="fas fa-pen-to-square me-1"></i> Update
+                        </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

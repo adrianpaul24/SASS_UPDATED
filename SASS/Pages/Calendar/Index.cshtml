@@ -1,0 +1,31 @@
+﻿@page
+@model SASS.Pages.Calendar.IndexModel
+@{
+    ViewData["Title"] = "Appointment Calendar";
+}
+<!-- Tui Calendar CSS & JS -->
+<link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
+<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+
+<!-- Navigation Header -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <button id="prevMonth">Previous</button>
+    <h2 id="currentMonthYear" style="margin: 0; text-align: center;"></h2>
+    <button id="nextMonth">Next</button>
+</div>
+
+<div id="calendar" style="height: 600px;"></div>
+
+<!-- Add Appointment Modal -->
+<div id="appointmentModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: white; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+    <h3>Add Appointment</h3>
+    <input type="text" id="appointmentTitle" placeholder="Enter title" required />
+    <input type="datetime-local" id="appointmentStart" required />
+    <input type="datetime-local" id="appointmentEnd" required />
+    <button id="saveAppointment">Save</button>
+    <button id="closeModal">Cancel</button>
+</div>
+
+<!-- Link to External JavaScript File -->
+<script src="~/js/calendar.js"></script>
