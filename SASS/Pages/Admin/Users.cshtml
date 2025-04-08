@@ -5,7 +5,15 @@
     ViewData["Title"] = "User Management";
 }
 
-<h2>User Management</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- Title aligned to the left -->
+    <h2 class="mb-0">User Management</h2>
+
+    <!-- Button aligned to the right -->
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createUserModal">
+        <i class="fas fa-plus"></i> Create User
+    </button>
+</div>
 
 <table class="table table-bordered">
     <thead>
@@ -26,62 +34,43 @@
         {
             <tr>
                 <td>@user.Id</td>
-                @* <td>@user.FirstName</td> *@
-                @* <td>@user.LastName</td> *@
                 <td>@(char.ToUpper(user.FirstName[0]) + user.FirstName.Substring(1).ToLower())</td>
                 <td>@(char.ToUpper(user.LastName[0]) + user.LastName.Substring(1).ToLower())</td>
                 <td>@user.Username</td>
                 <td>@user.Email</td>
                 <td>@user.Phone</td>
-                @* <td>@user.Role</td> *@
-                @* <td>@(user.IsActive ? "Yes" : "No")</td> *@
                 <td class="text-center">
-                    <div class="d-flex justify-content-center gap-2">
                     @if (user.Role == UserRole.Admin)
                     {
-                        <span class="badge bg-danger">
-                            <i class="fas fa-user-shield me-1"></i> Admin
-                        </span>
+                        <span class="badge bg-danger"><i class="fas fa-user-shield"></i> Admin</span>
                     }
                     else if (user.Role == UserRole.User)
                     {
-                        <span class="badge bg-primary">
-                            <i class="fas fa-user me-1"></i> User
-                        </span>
+                        <span class="badge bg-primary"><i class="fas fa-user"></i> User</span>
                     }
                     else
                     {
-                        <span class="badge bg-warning">
-                            <i class="fas fa-clock me-1"></i> Pending
-                        </span>
+                        <span class="badge bg-warning"><i class="fas fa-clock"></i> Pending</span>
                     }
-                    </div>
                 </td>
                 <td class="text-center">
-                    <div class="d-flex justify-content-center gap-2">
                     @if (user.IsActive)
                     {
-                        <span class="badge bg-success">
-                            <i class="fas fa-check-circle me-1"></i> Active
-                        </span>
+                        <span class="badge bg-success"><i class="fas fa-check-circle"></i> Active</span>
                     }
                     else
                     {
-                        <span class="badge bg-secondary">
-                            <i class="fas fa-times-circle me-1"></i> Inactive
-                        </span>
+                        <span class="badge bg-secondary"><i class="fas fa-times-circle"></i> Inactive</span>
                     }
-                    </div>
                 </td>
 
                 <td class="text-center">
+                    <!-- Actions: Edit, Delete -->
                     <div class="d-flex justify-content-center gap-2">
-                        <!-- Edit Button -->
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal-@user.Id">
                             <i class="fas fa-edit"></i> Edit
                         </button>
 
-                        <!-- Delete Button -->
                         <form method="post" asp-page-handler="Delete" asp-route-id="@user.Id" class="d-inline">
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">
                                 <i class="fas fa-trash"></i> Delete
@@ -102,7 +91,6 @@
                         <div class="modal-body">
                             <form method="post">
                                 <input type="hidden" asp-for="EditUser.Id" value="@user.Id" />
-
                                 <div class="mb-3">
                                     <label class="form-label">First Name</label>
                                     <input type="text" class="form-control" asp-for="EditUser.FirstName" value="@user.FirstName" required />
@@ -159,7 +147,56 @@
                     </div>
                 </div>
             </div>
-            <!-- End of Modal -->
+
+            <!-- Create User Modal -->
+            <div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Create User</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" asp-page-handler="Create">
+                                <div class="mb-3">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" asp-for="NewUser.FirstName" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" asp-for="NewUser.LastName" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control" asp-for="NewUser.Username" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" asp-for="NewUser.Email" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Phone</label>
+                                    <input type="text" class="form-control" asp-for="NewUser.Phone" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" asp-for="NewPassword" required />
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Create User</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
     </tbody>
 </table>

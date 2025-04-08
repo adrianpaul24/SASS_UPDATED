@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using SASS.Data;
 using SASS.Models;
+using BCrypt.Net;
 
 namespace SASS.Pages.Admin
 {
@@ -23,11 +24,29 @@ namespace SASS.Pages.Admin
         public Users EditUser { get; set; } = new();
 
         [BindProperty]
+        public Users NewUser { get; set; } = new();
+
+        [BindProperty]
         public string? NewPassword { get; set; }
 
         public async Task OnGetAsync()
         {
             UsersList = await _context.Users.ToListAsync();
+        }
+
+        public async Task<IActionResult> OnPostCreateAsync()
+        {
+            if (NewUser != null)
+            {
+                // Hash the password
+                NewUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(NewPassword);
+                NewUser.Role = UserRole.User;
+                NewUser.IsActive = true;
+
+                _context.Users.Add(NewUser);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostApproveAsync(int id)
@@ -63,6 +82,7 @@ namespace SASS.Pages.Admin
             }
             return RedirectToPage();
         }
+
         public async Task<IActionResult> OnPostEditAsync()
         {
             if (EditUser == null)
