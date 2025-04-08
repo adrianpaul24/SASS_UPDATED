@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SASS.Model;
 using SASS.Models;
 
 namespace SASS.Data
@@ -11,6 +12,7 @@ namespace SASS.Data
         public DbSet<Appointments> Appointments { get; set; }
         public DbSet<AppointmentLogs> AppointmentLogs { get; set; }
         public DbSet<Reminders> Reminders { get; set; }
+        public DbSet<UserTwoFactor> UserTwoFactor { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

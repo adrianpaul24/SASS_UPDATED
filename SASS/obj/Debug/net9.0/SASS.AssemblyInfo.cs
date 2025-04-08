@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SASS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c0b3c002de68f317951873f46258e27a1e4e542")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87f4e52313cc7ae86270ffafe6a29598acf3d541")]
 [assembly: System.Reflection.AssemblyProductAttribute("SASS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SASS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
