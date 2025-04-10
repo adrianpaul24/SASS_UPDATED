@@ -1,0 +1,66 @@
+﻿@page
+@using SASS.Pages.Auth
+@model Enable2FAModel
+@{
+    ViewData["Title"] = "Enable Two-Factor Authentication";
+}
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background-color: #f8f9fa;
+    }
+
+    .center-page {
+        height: 95vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-custom {
+        width: 100%;
+        max-width: 500px;
+    }
+</style>
+
+<div class="center-page">
+    <div class="card card-custom shadow border-0">
+        <div class="card-body">
+            <h4 class="card-title text-center mb-3">Enable Two-Factor Authentication</h4>
+            <p class="text-muted text-center mb-4">
+                Scan the QR code with your Authenticator App (e.g., Google Authenticator), then enter the 6-digit code to enable 2FA.
+            </p>
+
+            <form method="post">
+                <div class="form-group text-center mb-4">
+                    <label class="form-label d-block">Scan this QR Code</label>
+                    <img src="@Model.TwoFactor.QRCodeImageUrl" alt="QR Code" class="img-fluid border rounded p-2" style="max-width: 200px;" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Secret Key</label>
+                    <input type="text" class="form-control" value="@Model.TwoFactor.SharedKey" readonly />
+                    <input type="hidden" asp-for="TwoFactor.SharedKey" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <label class="form-label">Enter 6-digit Code</label>
+                    <input type="text" asp-for="TwoFactor.VerificationCode" class="form-control" required />
+                    <span asp-validation-for="TwoFactor.VerificationCode" class="text-danger small"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary btn-block w-100">Enable 2FA</button>
+                </div>
+
+                <div asp-validation-summary="All" class="text-danger small mt-3 text-center"></div>
+            </form>
+            <div class="text-center mt-3">
+                <a href="/Auth/Login" class="btn btn-link">← Back to Login</a>
+            </div>
+        </div>
+    </div>
+</div>

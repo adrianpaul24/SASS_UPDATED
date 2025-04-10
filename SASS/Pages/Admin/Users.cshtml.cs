@@ -8,7 +8,7 @@ using BCrypt.Net;
 
 namespace SASS.Pages.Admin
 {
-    [Authorize(Roles = "admin")] // Restrict access to admins only
+    [Authorize(Roles = "admin")]
     public class UsersModel : PageModel
     {
         private readonly ApplicationDbContext _context;

@@ -368,3 +368,5 @@ C:\Users\NRBSL-GUEST\Documents\GitHub\SASS_UPDATED\SASS\obj\Debug\net9.0\refint\
 C:\Users\NRBSL-GUEST\Documents\GitHub\SASS_UPDATED\SASS\obj\Debug\net9.0\SASS.pdb
 C:\Users\NRBSL-GUEST\Documents\GitHub\SASS_UPDATED\SASS\obj\Debug\net9.0\SASS.genruntimeconfig.cache
 C:\Users\NRBSL-GUEST\Documents\GitHub\SASS_UPDATED\SASS\obj\Debug\net9.0\ref\SASS.dll
+C:\Users\NRBSL-GUEST\Documents\GitHub\SASS_UPDATED\SASS\bin\Debug\net9.0\Otp.NET.dll
+C:\Users\NRBSL-GUEST\Documents\GitHub\SASS_UPDATED\SASS\bin\Debug\net9.0\QRCoder.dll

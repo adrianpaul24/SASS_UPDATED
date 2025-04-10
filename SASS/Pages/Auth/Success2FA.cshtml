@@ -1,0 +1,30 @@
+﻿@page
+@model SASS.Pages.Auth.Success2FAModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "2FA Enabled";
+}
+
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-6">
+            <div class="card border-success shadow rounded-4">
+                <div class="card-header bg-success text-white text-center">
+                    <h4><i class="fas fa-check-circle me-2"></i> Two-Factor Authentication Enabled</h4>
+                </div>
+                <div class="card-body text-center">
+                    <p class="lead">You've successfully enabled Two-Factor Authentication on your account.</p>
+                    <a asp-page="/Dashboard/Index" class="btn btn-success mt-3">
+                        Go to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

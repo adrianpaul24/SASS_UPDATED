@@ -1,4 +1,18 @@
 ﻿@page
 @model SASS.Pages.Dashboard.IndexModel
 @{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>Dashboard</h2>
+<p>Welcome to the Dashboard!</p>
+
+@if (Model.Is2FAEnabled)
+{
+    <span class="badge bg-success">2FA: Enabled</span>
+}
+else
+{
+    <span class="badge bg-danger">2FA: Disabled</span>
+    <a asp-page="/Auth/Enable2FA" class="ms-2">Enable now</a>
 }
